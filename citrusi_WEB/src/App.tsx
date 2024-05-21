@@ -1,15 +1,22 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+
 import './App.css'
-import { Button } from "@/components/ui/button"
+import { Route, Routes } from 'react-router-dom';
+import Statistics from './pages/personal/statistics';
+import Login from './pages/auth/login';
+
+import MapPage from './pages/dashboard/mapPage';
+import Home from './pages/dashboard/home';
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
     <>
-      <p className="text-red-600">test</p>
-      <Button>Click me</Button>
+      <Routes>
+        <Route path='/' element={<Home />} />
+        <Route path='/login' element={<Login />} />
+        <Route path='/statistics' element={<Statistics />} />
+        <Route path='/map' element={<MapPage />} />
+
+      </Routes>
     </>
   )
 }
