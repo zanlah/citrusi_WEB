@@ -1,6 +1,5 @@
 import Navbar from '@/components/Navbar'
 import Statistics_layout from '@/components/Statistics_layout'
-import React from 'react'
 
 const Statistics = () => {
     return (

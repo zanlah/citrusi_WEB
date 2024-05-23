@@ -1,8 +1,7 @@
-import React from "react";
-import { FaShoePrints } from "react-icons/fa6";
-import { FaRoute } from "react-icons/fa6";
-import { FaHashtag } from "react-icons/fa6";
-import { FaClock } from "react-icons/fa6";
+import { FaShoePrints, FaRoute, FaHashtag, FaClock, FaPersonWalking } from "react-icons/fa6";
+import Stepschart from "./Stepschart";
+import ActivitiesChart from "./Activiteschart";
+import WalkingImage from "@/assets/walking.svg";
 
 const Statistics_layout = () => {
     return (
@@ -38,6 +37,29 @@ const Statistics_layout = () => {
                     </div>
                 </div>
             </div>
+
+            <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8 mt-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-4">
+                <div className="bg-white rounded-md p-5 flex justify-center items-center">
+                    <Stepschart />
+                </div>
+                <div className="bg-white rounded-md p-5 flex justify-center items-center">
+                    <ActivitiesChart />
+                </div>
+            </div>
+
+
+            <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8 mt-4">
+                <div className="bg-white rounded-md p-5 flex justify-between items-center">
+                    <div className="flex items-center mx-10">
+                        <img src={WalkingImage} alt="Walking Image" className="w-80 text-blue-500" />
+                    </div>
+                    <div className="text-right mx-10">
+                        <p className="text-4xl font-bold">EAT - SLEEP - MOVE - REPEAT</p>
+                        <p className="text-md sm:text-md lg:text-md mt-4">"Keep moving, one step at a time, for a journey worth repeating."</p>
+                    </div>
+                </div>
+            </div>
+
         </div>
         </>
     );
