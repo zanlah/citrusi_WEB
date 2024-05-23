@@ -17,6 +17,10 @@ type ChartData = {
 
 const ActivitiesChart = () => {
 
+  /**
+   * ! Connect with the API and retrieve data
+   */
+
   const [chartData, setChartData] = useState<ChartData | null>(null);
   const [loading, setLoading] = useState(true);
 

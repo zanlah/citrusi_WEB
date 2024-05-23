@@ -1,4 +1,4 @@
-import { FaShoePrints, FaRoute, FaHashtag, FaClock, FaPersonWalking } from "react-icons/fa6";
+import { FaShoePrints, FaRoute, FaHashtag, FaClock } from "react-icons/fa6";
 import Stepschart from "./Stepschart";
 import ActivitiesChart from "./Activiteschart";
 import WalkingImage from "@/assets/walking.svg";
