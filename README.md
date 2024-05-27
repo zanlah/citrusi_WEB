@@ -1,2 +1,3 @@
+# citrusi frontend
 
-test
+run via npm run dev
