@@ -34,4 +34,4 @@ jobs:
           docker pull ${{ secrets.DOCKER_USERNAME }}/citrusi_web:${{ github.sha }}
           docker stop citrusi_web || true
           docker rm citrusi_web || true
-          docker run --name citrusi_web -d -p 80:80 ${{ secrets.DOCKER_USERNAME }}/citrusi_web:${{ github.sha }}
+          docker run --name citrusi_web -d -p 8080:8080 ${{ secrets.DOCKER_USERNAME }}/citrusi_web:${{ github.sha }}
