@@ -13,8 +13,7 @@ COPY . .
 
 RUN npm run build
 
-EXPOSE 80
+EXPOSE 8080
 
 # Define the command to run your app using CMD which will be executed during runtime
 CMD ["npm", "run", "preview"]
-#az ad sp create-for-rbac --name "citrusi_web" --scopes "/subscriptions/dbeac5ff-cd76-40bb-8360-bbfa430c3ba1/resourceGroups/citrusMasina_group/providers/Microsoft.ContainerRegistry/registries/citrusi" --role "Contributor"
