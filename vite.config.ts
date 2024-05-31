@@ -10,10 +10,10 @@ export default defineConfig({
     strictPort: true,
   },
   server: {
-    port: 8080,
+    port: 5173,
     strictPort: true,
     host: true,
-    origin: "http://localhost:8080",
+    origin: "http://localhost:5173",
   },
   resolve: {
     alias: {
