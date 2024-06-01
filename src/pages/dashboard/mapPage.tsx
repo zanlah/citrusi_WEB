@@ -3,6 +3,16 @@ import { useState, useCallback, useEffect } from 'react';
 import Navbar from '@/components/Navbar';
 import GoogleMapReact from 'google-map-react';
 import proj4 from 'proj4';
+import {
+    Sheet,
+    SheetContent,
+    SheetDescription,
+    SheetHeader,
+    SheetOverlay,
+    SheetTitle,
+    SheetTrigger,
+} from "@/components/ui/sheet"
+
 const AnyReactComponent = ({ text }: any) => <div className="absolute translate-x-1/2 rounded-md h-5 w-5 text-blue bg-red-500">{text}</div>;
 const Marker = ({ text }: any) => (
     <div style={{ color: 'blue', background: 'red', padding: '5px', borderRadius: '50%' }}>
@@ -17,15 +27,8 @@ const fromProjection = 'EPSG:3857';
 const toProjection = 'EPSG:4326';  // WGS 84
 
 const MapPage = () => {
-    const [routes, setRoutes] = useState<any[]>([]);
-
-    const path = [
-        { lat: 46.1512, lng: 14.9955 },
-        { lat: 47.1512, lng: 13.9955 },
-        { lat: 43.1512, lng: 11.9955 },
-    ];
-
-
+    const [openShowRouteDetails, setOpenShowRouteDetails] = useState(false);
+    const [selectedRoute, setSelectedRoute] = useState<any>(null);
     const center = {
         lat: 46.1512,
         lng: 14.9955
@@ -63,11 +66,12 @@ const MapPage = () => {
                         geodesic: true,
                         strokeColor: '#C643A4',
                         strokeOpacity: 1.0,
-                        strokeWeight: 3
+                        strokeWeight: 4
                     });
                     polyline.setMap(map);
                     maps.event.addListener(polyline, 'click', () => {
-                        alert('Polyline clicked!');
+                        setSelectedRoute(route);
+                        setOpenShowRouteDetails(true);
                     });
                     /* route.latLngs.forEach((pt: any, index: number) => {
                          new maps.Marker({
@@ -123,6 +127,13 @@ const MapPage = () => {
 
                 </GoogleMapReact>
             </div>
+            <Sheet open={openShowRouteDetails} onOpenChange={setOpenShowRouteDetails}>
+                <SheetContent >
+                    <SheetHeader>
+                        <SheetTitle>{selectedRoute && selectedRoute.name}</SheetTitle>
+                    </SheetHeader>
+                </SheetContent>
+            </Sheet>
         </div>
     );
 }
