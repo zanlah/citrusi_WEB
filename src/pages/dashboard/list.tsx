@@ -1,9 +1,7 @@
-import React, { useEffect, useState } from 'react'
-import Navbar from '@/components/Navbar'
+import { useEffect, useState } from 'react'
 import {
     Table,
     TableBody,
-    TableCaption,
     TableCell,
     TableHead,
     TableHeader,
@@ -12,7 +10,6 @@ import {
 import {
     Pagination,
     PaginationContent,
-    PaginationEllipsis,
     PaginationItem,
     PaginationLink,
     PaginationNext,
@@ -32,7 +29,7 @@ const List = () => {
     useEffect(() => {
         const currentPageTemp = parseInt(page ?? '', 10) || 1;
         setCurrentPage(currentPageTemp);
-        fetch(`http://52.143.190.38/api/routes/list-paginated?page=${currentPageTemp}`)
+        fetch(import.meta.env.VITE_SERVER_URL + `/api/routes/list-paginated?page=${currentPageTemp}`)
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
@@ -48,10 +45,7 @@ const List = () => {
             });
 
     }, [page]);
-    // Convert page to a number and handle pagination logic
 
-
-    // Function to navigate to the previous or next page
     const handlePageChange = (newPage: any) => {
         navigate(`/list/${newPage}`);
     };

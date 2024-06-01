@@ -1,24 +1,22 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useState, useCallback, useEffect } from 'react';
+import { useState } from 'react';
 import Navbar from '@/components/Navbar';
 import GoogleMapReact from 'google-map-react';
 import proj4 from 'proj4';
 import {
     Sheet,
     SheetContent,
-    SheetDescription,
     SheetHeader,
-    SheetOverlay,
     SheetTitle,
-    SheetTrigger,
 } from "@/components/ui/sheet"
-
+/*
 const AnyReactComponent = ({ text }: any) => <div className="absolute translate-x-1/2 rounded-md h-5 w-5 text-blue bg-red-500">{text}</div>;
 const Marker = ({ text }: any) => (
     <div style={{ color: 'blue', background: 'red', padding: '5px', borderRadius: '50%' }}>
         {text}
     </div>
 );
+*/
 
 
 
@@ -44,7 +42,7 @@ const MapPage = () => {
 
     const handleApiLoaded = (map: any, maps: any) => {
 
-        fetch('http://52.143.190.38/api/routes/list')
+        fetch(import.meta.env.VITE_SERVER_URL + '/api/routes/list')
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
@@ -90,7 +88,7 @@ const MapPage = () => {
             <div style={{ height: '100vh', width: '100%' }}>
                 <GoogleMapReact
 
-                    bootstrapURLKeys={{ key: "AIzaSyAhHBDaNhQVgnDd6QC83XmwyIWjTvungkM" }}
+                    bootstrapURLKeys={{ key: import.meta.env.VITE_GOOGLE_MAPS_API_KEY }}
                     defaultCenter={center}
                     defaultZoom={zoom}
                     options={map => (
