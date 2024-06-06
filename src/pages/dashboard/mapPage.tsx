@@ -152,16 +152,16 @@ const MapPage = () => {
                     </SheetHeader>
                     <div className="grid gap-4 py-4">
                         <div className="grid grid-cols-4 items-center gap-4">
-                            <div className="text-left">Višinska razlika:</div>
+                            <div className="text-left text-gray-600">Višinska razlika:</div>
                             <div className="col-span-3 text-right">{selectedRoute && selectedRoute.cumulativeElevationGain} m</div>
                         </div>
                         <div className="grid grid-cols-4 items-center gap-4">
-                            <div className="text-left">Dolžina poti:</div>
+                            <div className="text-left text-gray-600">Dolžina:</div>
                             <div className="col-span-3 text-right">{selectedRoute && formatDistance(selectedRoute.distance)}</div>
                         </div>
                         <div className="grid grid-cols-4 items-center gap-4">
-                            <div className="text-left">Čas:</div>
-                            <div className="col-span-3 text-right">{selectedRoute && formatTime(selectedRoute.durration)}</div>
+                            <div className="text-left text-gray-600">Čas:</div>
+                            <div className="col-span-3 text-right">{selectedRoute && formatTime(selectedRoute.duration)}</div>
                         </div>
                     </div>
                 </SheetContent>
