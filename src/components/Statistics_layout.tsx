@@ -12,28 +12,28 @@ const Statistics_layout = () => {
                     <FaShoePrints className="text-4xl text-indigo-600" />
                     <div className="text-right">
                         <p className="text-2xl font-bold">1234</p>
-                        <p className="text-gray-600 font-bold">Steps</p>
+                        <p className="text-gray-600 font-bold">Korakov</p>
                     </div>
                 </div>
                 <div className="bg-white rounded-md p-5 flex items-center justify-between">
                     <FaRoute className="text-4xl text-indigo-600" />
                     <div className="text-right">
                         <p className="text-2xl font-bold">123.4 km</p>
-                        <p className="text-gray-600 font-bold">Traveled</p>
+                        <p className="text-gray-600 font-bold">Prehojenih</p>
                     </div>
                 </div>
                 <div className="bg-white rounded-md p-5 flex items-center justify-between">
                     <FaHashtag className="text-4xl text-indigo-600" />
                     <div className="text-right">
                         <p className="text-2xl font-bold">4</p>
-                        <p className="text-gray-600 font-bold">Activities</p>
+                        <p className="text-gray-600 font-bold">Aktivnosti</p>
                     </div>
                 </div>
                 <div className="bg-white rounded-md p-5 flex items-center justify-between">
                     <FaClock className="text-4xl text-indigo-600" />
                     <div className="text-right">
                         <p className="text-2xl font-bold">1h 40min</p>
-                        <p className="text-gray-600 font-bold">Time</p>
+                        <p className="text-gray-600 font-bold">Akvtivnih</p>
                     </div>
                 </div>
             </div>
