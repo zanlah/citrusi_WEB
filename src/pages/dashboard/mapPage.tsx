@@ -147,19 +147,19 @@ const MapPage = () => {
             <Sheet open={openShowRouteDetails} onOpenChange={setOpenShowRouteDetails}>
                 <SheetContent >
                     <SheetHeader>
-                        <SheetTitle>{selectedRoute && selectedRoute.name}</SheetTitle>
+                        <SheetTitle className='text-lg'>{selectedRoute && selectedRoute.name}</SheetTitle>
                         <SheetDescription className='text-lg'>Podatki o poti</SheetDescription>
                     </SheetHeader>
-                    <div className="grid gap-4 py-4">
-                        <div className="flex justify-between mb-2">
+                    <div className="grid gap-4 py-4 space-y-2">
+                        <div className="flex justify-between">
                             <div className="text-left text-gray-600">Višinska razlika:</div>
                             <div className="col-span-3 text-right">{selectedRoute && selectedRoute.cumulativeElevationGain} m</div>
                         </div>
-                        <div className="flex justify-between mb-2">
+                        <div className="flex justify-between">
                             <div className="text-left text-gray-600">Dolžina:</div>
                             <div className="text-right">{selectedRoute && formatDistance(selectedRoute.distance)}</div>
                         </div>
-                        <div className="flex justify-between mb-2">
+                        <div className="flex justify-between">
                             <div className="text-left text-gray-600">Čas:</div>
                             <div className=" text-right">{selectedRoute && formatTime(selectedRoute.duration)}</div>
                         </div>
