@@ -42,7 +42,7 @@ const MapPage = () => {
 
     const handleApiLoaded = (map: any, maps: any) => {
 
-        fetch(import.meta.env.VITE_SERVER_URL + '/api/routes/list')
+        fetch(import.meta.env.VITE_SERVER_URL + '/routes/list')
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Network response was not ok');

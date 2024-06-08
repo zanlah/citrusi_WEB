@@ -29,7 +29,7 @@ const List = () => {
     useEffect(() => {
         const currentPageTemp = parseInt(page ?? '', 10) || 1;
         setCurrentPage(currentPageTemp);
-        fetch(import.meta.env.VITE_SERVER_URL + `/api/routes/list-paginated?page=${currentPageTemp}`)
+        fetch(import.meta.env.VITE_SERVER_URL + `/routes/list-paginated?page=${currentPageTemp}`)
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
