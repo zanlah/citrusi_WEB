@@ -35,7 +35,7 @@ const ActivitiesChart = () => {
               label: 'Activities',
               data: data.data,
               fill: false,
-              borderColor: '#3b82f6',
+              borderColor: '#4f46e5',
               tension: 0,
             },
           ],

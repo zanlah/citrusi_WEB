@@ -34,8 +34,8 @@ const Stepschart = () => {
             {
               label: 'Steps',
               data: data.data,
-              backgroundColor: '#3b82f6',
-              borderColor: '#3b82f6',
+              backgroundColor: '#4f46e5',
+              borderColor: '#4f46e5',
               borderWidth: 1,
             },
           ],

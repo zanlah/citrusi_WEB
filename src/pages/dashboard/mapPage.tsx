@@ -8,6 +8,7 @@ import {
     SheetContent,
     SheetHeader,
     SheetTitle,
+    SheetDescription,
 } from "@/components/ui/sheet"
 /*
 const AnyReactComponent = ({ text }: any) => <div className="absolute translate-x-1/2 rounded-md h-5 w-5 text-blue bg-red-500">{text}</div>;
@@ -82,6 +83,24 @@ const MapPage = () => {
             })
             .catch(error => console.error('Error fetching routes:', error));
     };
+
+
+    const formatTime = (minutes: number) => {
+        if (minutes >= 60) {
+            const hours = Math.floor(minutes / 60);
+            const remainingMinutes = minutes % 60;
+            return `${hours}h ${remainingMinutes}m`;
+        }
+        return `${minutes}m`;
+    };
+
+    const formatDistance = (distance: number) => {
+        if (distance >= 1000) {
+            return `${(distance / 1000).toFixed(1)} km`;
+        }
+        return `${distance} m`;
+    };
+
     return (
         <div className="min-h-screen">
             <Navbar />
@@ -128,8 +147,23 @@ const MapPage = () => {
             <Sheet open={openShowRouteDetails} onOpenChange={setOpenShowRouteDetails}>
                 <SheetContent >
                     <SheetHeader>
-                        <SheetTitle>{selectedRoute && selectedRoute.name}</SheetTitle>
+                        <SheetTitle className='text-lg'>{selectedRoute && selectedRoute.name}</SheetTitle>
+                        <SheetDescription className='text-lg'>Podatki o poti</SheetDescription>
                     </SheetHeader>
+                    <div className="grid gap-4 py-4 space-y-2">
+                        <div className="flex justify-between">
+                            <div className="text-left text-gray-600">Višinska razlika:</div>
+                            <div className="col-span-3 text-right">{selectedRoute && selectedRoute.cumulativeElevationGain} m</div>
+                        </div>
+                        <div className="flex justify-between">
+                            <div className="text-left text-gray-600">Dolžina:</div>
+                            <div className="text-right">{selectedRoute && formatDistance(selectedRoute.distance)}</div>
+                        </div>
+                        <div className="flex justify-between">
+                            <div className="text-left text-gray-600">Čas:</div>
+                            <div className=" text-right">{selectedRoute && formatTime(selectedRoute.duration)}</div>
+                        </div>
+                    </div>
                 </SheetContent>
             </Sheet>
         </div>
