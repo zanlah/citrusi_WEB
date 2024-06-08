@@ -10,6 +10,8 @@ import {
     SheetTitle,
     SheetDescription,
 } from "@/components/ui/sheet"
+import ElevationChart from '@/components/ElevationChart';
+
 /*
 const AnyReactComponent = ({ text }: any) => <div className="absolute translate-x-1/2 rounded-md h-5 w-5 text-blue bg-red-500">{text}</div>;
 const Marker = ({ text }: any) => (
@@ -68,6 +70,32 @@ const MapPage = () => {
                         strokeWeight: 4
                     });
                     polyline.setMap(map);
+                    new maps.Marker({
+                        position: { lat: route.latLngs[0].latLng[1], lng: route.latLngs[0].latLng[0] },
+                        map: map,
+                        title: "start",
+                        icon: {
+                            path: maps.SymbolPath.CIRCLE,
+                            scale: 10,
+                            fillColor: '#a4c25e',
+                            fillOpacity: 1,
+                            strokeWeight: 0
+                        }
+                    });
+
+                    new maps.Marker({
+                        position: { lat: route.latLngs[route.latLngs.length - 1].latLng[1], lng: route.latLngs[route.latLngs.length - 1].latLng[0] },
+                        map,
+                        title: 'End',
+                        icon: {
+                            path: maps.SymbolPath.CIRCLE,
+                            scale: 10,
+                            fillColor: '#de1257',
+                            fillOpacity: 1,
+                            strokeWeight: 0
+                        }
+
+                    });
                     maps.event.addListener(polyline, 'click', () => {
                         setSelectedRoute(route);
                         setOpenShowRouteDetails(true);
@@ -145,12 +173,12 @@ const MapPage = () => {
                 </GoogleMapReact>
             </div>
             <Sheet open={openShowRouteDetails} onOpenChange={setOpenShowRouteDetails}>
-                <SheetContent >
+                <SheetContent className='min-w-[500px]'>
                     <SheetHeader>
-                        <SheetTitle className='text-lg'>{selectedRoute && selectedRoute.name}</SheetTitle>
-                        <SheetDescription className='text-lg'>Podatki o poti</SheetDescription>
+                        <SheetTitle className='text-xl'>{selectedRoute && selectedRoute.name}</SheetTitle>
+                        <SheetDescription className='text-lg font-light'>Podatki o poti:</SheetDescription>
                     </SheetHeader>
-                    <div className="grid gap-4 py-4 space-y-2">
+                    <div className="grid mt-1  mb-5 space-y-1">
                         <div className="flex justify-between">
                             <div className="text-left text-gray-600">Višinska razlika:</div>
                             <div className="col-span-3 text-right">{selectedRoute && selectedRoute.cumulativeElevationGain} m</div>
@@ -163,6 +191,20 @@ const MapPage = () => {
                             <div className="text-left text-gray-600">Čas:</div>
                             <div className=" text-right">{selectedRoute && formatTime(selectedRoute.duration)}</div>
                         </div>
+                        <div className="flex justify-between">
+                            <div className="text-left text-gray-600">Težavnost:</div>
+                            <div className=" text-right">{selectedRoute && selectedRoute.difficulty || "ni podatka"}</div>
+                        </div>
+                        <div className="flex justify-between">
+                            <div className="text-left text-gray-600">Plezalna oprema: </div>
+                            <div className=" text-right">{selectedRoute && selectedRoute.hasSafetyGear || "ni potrebna"}</div>
+                        </div>
+                        <div className="flex justify-between">
+                            <div className="text-left text-gray-600">Koča zaprta:</div>
+                            <div className=" text-right">{selectedRoute && selectedRoute.hutClosed || "ne"}</div>
+                        </div>
+
+                        {selectedRoute && <ElevationChart route={selectedRoute.coordinates} />}
                     </div>
                 </SheetContent>
             </Sheet>

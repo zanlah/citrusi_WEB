@@ -105,7 +105,7 @@ export default function Navbar() {
                                                             href="#"
                                                             className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
                                                         >
-                                                            Your Profile
+                                                            Profil
                                                         </a>
                                                     )}
                                                 </Menu.Item>
@@ -115,27 +115,18 @@ export default function Navbar() {
                                                             href="/statistics"
                                                             className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
                                                         >
-                                                            Personal stats
+                                                            Statistika
                                                         </a>
                                                     )}
                                                 </Menu.Item>
-                                                <Menu.Item>
-                                                    {({ active }) => (
-                                                        <a
-                                                            href="#"
-                                                            className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
-                                                        >
-                                                            Settings
-                                                        </a>
-                                                    )}
-                                                </Menu.Item>
+
                                                 <Menu.Item>
                                                     {({ active }) => (
                                                         <button
                                                             onClick={logout}
                                                             className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm w-full text-left text-gray-700')}
                                                         >
-                                                            Sign out
+                                                            Odjava
                                                         </button>
                                                     )}
                                                 </Menu.Item>
