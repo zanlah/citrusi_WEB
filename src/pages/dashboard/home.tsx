@@ -6,6 +6,8 @@ import { Link } from 'react-router-dom';
 import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/react'
 import { MinusSmallIcon, PlusSmallIcon } from '@heroicons/react/24/outline'
 import Footer from '@/components/Footer'
+
+
 const stats = [
     { id: 1, name: 'pot na dan naslednje 3 leta', value: '1000 poti' },
     { id: 2, name: 'Mala ekipa z velikimi ambicijami', value: '3 članska ekipa' },
@@ -99,7 +101,7 @@ const Home = () => {
                                     transform="translate(24 24)"
                                     clipPath="url(#2ade4387-9c63-4fc4-b754-10e687a0d332)"
                                 >
-                                    <img src="https://tailwindui.com/img/component-images/mobile-app-screenshot.png" alt="" />
+                                    <img src="/screenshot.png" alt="" />
                                 </foreignObject>
                             </svg>
                         </div>
