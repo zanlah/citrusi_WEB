@@ -31,7 +31,7 @@ const ElevationChart = ({ route: routeData }: any) => {
             return;
         }
 
-        const labels = routeData.map((pt: any, index: number) => `Točka ${index + 1}`);
+        const labels = routeData.map((_pt: any, index: number) => `Točka ${index + 1}`);
         const data = routeData.map((pt: any) => pt[2]);
 
         const formattedData = {
