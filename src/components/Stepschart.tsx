@@ -15,25 +15,41 @@ type ChartData = {
   }[];
 };
 
-const Stepschart = () => {
+interface StepsPerDayData {
+  [date: string]: number;
+}
 
-  /**
-   * ! Connect with the API and retrieve data
-   */
+const Stepschart = () => {
 
   const [chartData, setChartData] = useState<ChartData | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch('/Stepsdata.json')
-      .then((response) => response.json())
-      .then((data) => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(`http://localhost:3000/users/stats?userId=1`);
+        const data = await response.json();
+
+        const stepsPerDay: StepsPerDayData = {};
+
+        data.forEach((entry: { date: string; steps: any; }) => {
+          const date = entry.date.split('T')[0]; // Extract the date part
+          if (stepsPerDay[date]) {
+            stepsPerDay[date] += entry.steps;
+          } else {
+            stepsPerDay[date] = entry.steps;
+          }
+        });
+
+        const labels = Object.keys(stepsPerDay);
+        const stepData = Object.values(stepsPerDay);
+
         const formattedData = {
-          labels: data.labels,
+          labels,
           datasets: [
             {
-              label: 'Steps',
-              data: data.data,
+              label: 'Število korakov',
+              data: stepData,
               backgroundColor: '#4f46e5',
               borderColor: '#4f46e5',
               borderWidth: 1,
@@ -42,11 +58,13 @@ const Stepschart = () => {
         };
         setChartData(formattedData);
         setLoading(false);
-      })
-      .catch((error) => {
+      } catch (error) {
         console.error('Error fetching chart data:', error);
         setLoading(false);
-      });
+      }
+    };
+
+    fetchData();
   }, []);
 
   if (loading) {
@@ -61,7 +79,7 @@ const Stepschart = () => {
       },
       title: {
         display: true,
-        text: 'Walking Statistics',
+        text: 'Statistika korakov',
       },
     },
   };

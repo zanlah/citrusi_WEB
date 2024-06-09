@@ -9,44 +9,64 @@ type ChartData = {
   datasets: {
     label: string;
     data: number[];
-    fill: boolean;
+    backgroundColor: string;
     borderColor: string;
-    tension: number;
+    borderWidth: number;
   }[];
 };
 
+interface ActivityData {
+  [month: string]: number;
+}
+
 const ActivitiesChart = () => {
-
-  /**
-   * ! Connect with the API and retrieve data
-   */
-
   const [chartData, setChartData] = useState<ChartData | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch('/Activitydata.json')
-      .then((response) => response.json())
-      .then((data) => {
-        const formattedData = {
-          labels: data.labels,
+    const fetchData = async () => {
+      try {
+        const response = await fetch(`http://localhost:3000/users/stats?userId=1`);
+        const data = await response.json();
+
+        const activitiesPerMonth: ActivityData = {};
+
+        if (Array.isArray(data)) {
+          data.forEach((entry: { date: string }) => {
+            const month = entry.date.split('-')[1]; // Extract the month part from the date
+            if (activitiesPerMonth[month]) {
+              activitiesPerMonth[month]++;
+            } else {
+              activitiesPerMonth[month] = 1;
+            }
+          });
+        }
+
+        const labels = Object.keys(activitiesPerMonth);
+        const activityData = Object.values(activitiesPerMonth);
+
+       const formattedData: ChartData = {
+          labels,
           datasets: [
             {
-              label: 'Activities',
-              data: data.data,
-              fill: false,
+              label: 'Število aktivnosti',
+              data: activityData,
+              backgroundColor: '#4f46e5',
               borderColor: '#4f46e5',
-              tension: 0,
+              borderWidth: 1,
             },
           ],
         };
+
         setChartData(formattedData);
         setLoading(false);
-      })
-      .catch((error) => {
+      } catch (error) {
         console.error('Error fetching chart data:', error);
         setLoading(false);
-      });
+      }
+    };
+
+    fetchData();
   }, []);
 
   if (loading) {
@@ -61,7 +81,7 @@ const ActivitiesChart = () => {
       },
       title: {
         display: true,
-        text: 'Monthly Activities',
+        text: 'Mesečne aktivnosti',
       },
     },
   };
